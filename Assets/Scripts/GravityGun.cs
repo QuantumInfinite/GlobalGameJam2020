@@ -38,6 +38,9 @@ public class GravityGun : MonoBehaviour
 
     public int carryCapacity;
 
+    public ParticleSystem ps_spawnObject;
+    public ParticleSystem ps_storeObject;
+
     private void Update()
     {
         //drop item
@@ -49,6 +52,7 @@ public class GravityGun : MonoBehaviour
         if (!isBusy && currentGrabbed && Input.GetMouseButtonDown(1))
         {
             storedGrapped.Add(currentGrabbed);
+            ps_storeObject.Play();
             currentGrabbed.StoreCurrentObject();
             currentGrabbed = null;
         }
