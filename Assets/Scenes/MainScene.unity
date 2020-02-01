@@ -34932,7 +34932,7 @@ PrefabInstance:
     - target: {fileID: 6185575116432620980, guid: 8917cf0266afdcb4cbc60328a52a89c2,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6185575116432620980, guid: 8917cf0266afdcb4cbc60328a52a89c2,
         type: 3}
@@ -34943,6 +34943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lengthInSec
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185575116432620969, guid: 8917cf0266afdcb4cbc60328a52a89c2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8917cf0266afdcb4cbc60328a52a89c2, type: 3}
