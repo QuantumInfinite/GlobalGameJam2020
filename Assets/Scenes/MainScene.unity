@@ -34234,7 +34234,9 @@ MonoBehaviour:
   - {fileID: 4761296740038065748}
   grabDistance: 15.59
   returnSpeed: 5
-  maxReturnTime: 2
+  ascendSpeed: 1.5
+  maxReturnDuration: 2
+  ascendDuration: 1
   explosionForce: 2
   OnFail:
     m_PersistentCalls:

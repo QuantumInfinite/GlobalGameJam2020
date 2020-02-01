@@ -53,7 +53,12 @@ public class Grabbable : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.None;
         GravityGun.instance.ps_spawnObject.transform.position = transform.position;
-        if(fromDrop) GravityGun.instance.ps_spawnObject.Play();
+        if (fromDrop)
+        {
+            GravityGun.instance.audioSource.clip = GravityGun.instance.spawnInSFX;
+            GravityGun.instance.audioSource.Play();
+            GravityGun.instance.ps_spawnObject.Play();
+        }
         StartCoroutine(SetScale(Size.GoBig));
     }
 

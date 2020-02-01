@@ -36,7 +36,7 @@ public class ReturnToHome : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > 2)
+        if (collision.relativeVelocity.magnitude > 2 && audioSource != null)
         {
             audioSource.volume = collision.relativeVelocity.magnitude / 5;
             audioSource.Play();

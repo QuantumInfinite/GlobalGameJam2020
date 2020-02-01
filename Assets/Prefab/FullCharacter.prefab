@@ -319,6 +319,7 @@ MonoBehaviour:
   - {fileID: 0}
   slurpSFX: {fileID: 8300000, guid: 3e261aafedeaacf4e81dc357ea3d1e73, type: 3}
   startMoveSFX: {fileID: 8300000, guid: b33045c691aef3d4c97f8c26fe203bba, type: 3}
+  spawnInSFX: {fileID: 8300000, guid: b75fd4f3de0afae4692bdada60c0e475, type: 3}
   audioSource: {fileID: 3088685674778112144}
   currentGrabbed: {fileID: 0}
   storedGrapped: []

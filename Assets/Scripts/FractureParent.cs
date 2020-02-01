@@ -30,16 +30,19 @@ public class FractureParent : MonoBehaviour
 
     void Update()
     {
-        
+        if (slowdown >= 0)
+        {
+            slowdown -= 1;
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
         
     }
-    bool bypass = true;
+    float slowdown = 1;
     public void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && slowdown <= 0)
         {
             if (!returning && (Input.GetAxis("RewindTime") != 0))
             {
@@ -62,6 +65,7 @@ public class FractureParent : MonoBehaviour
             }
             else if (returning && (Input.GetAxis("RewindTime") == 0))
             {
+
                 //If we are supposed to be returning but they let go of the key
                 returning = false;
                 CancelInvoke("Check");
