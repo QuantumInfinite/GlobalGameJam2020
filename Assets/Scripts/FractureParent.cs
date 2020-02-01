@@ -30,12 +30,15 @@ public class FractureParent : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
+    {
+        
+    }
+    public void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (!returning && Input.GetKeyDown(KeyCode.Equals))
+            if (!returning && Input.GetAxis("RewindTime") != 0)
             {
                 //If we are not currently returning and they press the key
                 returning = true;
@@ -52,7 +55,7 @@ public class FractureParent : MonoBehaviour
                 }
                 Invoke("Check", maxReturnTime * 0.9f);
             }
-            else if (returning && !Input.GetKey(KeyCode.Equals))
+            else if (returning && Input.GetAxis("RewindTime") == 0)
             {
                 //If we are supposed to be returning but they let go of the key
                 returning = false;
@@ -62,7 +65,7 @@ public class FractureParent : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
