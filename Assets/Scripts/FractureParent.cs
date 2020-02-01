@@ -5,19 +5,22 @@ using UnityEngine.Events;
 using System.Linq;
 public class FractureParent : MonoBehaviour
 {
+    [Header("Hookups")]
     public GameObject completePiece;
     public List<ReturnToHome> allPieces;
+
+    [Header("Settings")]
     public float grabDistance = 5f;
     public float returnSpeed = 5;
     public float maxReturnTime = 2f;
     public float explosionForce = 2f;
 
+    [Header("Events")]
     public UnityEvent OnFail;
     public UnityEvent OnSuccess;
 
     List<ReturnToHome> nearbyPieces;
     bool returning = false;
-
     void Start()
     {
         completePiece.SetActive(false);
@@ -25,28 +28,50 @@ public class FractureParent : MonoBehaviour
 
     void Update()
     {
-        if (!returning && Input.GetKeyDown(KeyCode.Equals))
-        {
-            returning = true;
-            
-            nearbyPieces = new List<ReturnToHome>();
+        
+    }
 
-            foreach (var piece in allPieces)
-            {
-                if (Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
-                {
-                    nearbyPieces.Add(piece);
-                    piece.StartCoroutine(piece.GoHome(returnSpeed, Time.realtimeSinceStartup + maxReturnTime));
-                }
-            }
-            Invoke("Check", maxReturnTime * 0.9f);
-        }
-        else if (returning && !Input.GetKey(KeyCode.Equals))
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            //If we are supposed to be returning but they let go of the key
-            returning = false;
-            CancelInvoke("Check");
-            Fail();
+            if (!returning && Input.GetKeyDown(KeyCode.Equals))
+            {
+                //If we are not currently returning and they press the key
+                returning = true;
+
+                nearbyPieces = new List<ReturnToHome>();
+
+                foreach (var piece in allPieces)
+                {
+                    if (Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
+                    {
+                        nearbyPieces.Add(piece);
+                        piece.StartCoroutine(piece.GoHome(returnSpeed, Time.realtimeSinceStartup + maxReturnTime));
+                    }
+                }
+                Invoke("Check", maxReturnTime * 0.9f);
+            }
+            else if (returning && !Input.GetKey(KeyCode.Equals))
+            {
+                //If we are supposed to be returning but they let go of the key
+                returning = false;
+                CancelInvoke("Check");
+                Fail();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (returning)
+            {
+                returning = false;
+                CancelInvoke("Check");
+                Fail();
+            }
         }
     }
 

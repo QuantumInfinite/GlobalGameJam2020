@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/csc.rsp.meta
+guid: 89ce7931a00d9784f94e4779e093c4e2
+=======
 guid: 4e6b1049bd59acf43908567edc73d5d1
 folderAsset: yes
+>>>>>>> bc7f9eb9a6f83ef3ab90790d33f828128e2d7906:Assets/Game Asset/Materials.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
