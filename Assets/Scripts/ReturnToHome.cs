@@ -32,11 +32,11 @@ public class ReturnToHome : MonoBehaviour
         //float forceEndTime = Time.realtimeSinceStartup + 2f;
         bool stillCorrecting = true;
         while (stillCorrecting && Time.realtimeSinceStartup < forceEndTime)
-        {            
+        {     
             rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
 
-
+            
 
            // Debug.Log(Vector3.Distance(transform.position, origionalPos) + " | " + Quaternion.Angle(transform.rotation, origionalRot));
 
