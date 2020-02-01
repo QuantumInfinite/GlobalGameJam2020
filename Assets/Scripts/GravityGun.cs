@@ -14,6 +14,7 @@ public class GravityGun : MonoBehaviour
 
     public AudioClip slurpSFX;
     public AudioClip startMoveSFX;
+    public AudioClip spawnInSFX;
     public AudioSource audioSource;
 
     private void Awake()
