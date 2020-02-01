@@ -30,13 +30,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
-        private CharacterController m_CharacterController;
+        public CharacterController m_CharacterController;
         private CollisionFlags m_CollisionFlags;
         private bool m_PreviouslyGrounded;
         private Vector3 m_OriginalCameraPosition;
         private float m_StepCycle;
         private float m_NextStep;
         private AudioSource m_AudioSource;
+
+        public bool isClimbing;
 
         // Use this for initialization
         private void Start()
@@ -58,7 +60,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
 
-            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded && !isClimbing)
             {
                 PlayLandingSound();
                 m_MoveDir.y = 0f;
@@ -96,8 +98,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
-
-            if (m_CharacterController.isGrounded)
+            if(isClimbing)
+            {
+                m_MoveDir.y =  m_Input.y * speed * 2;
+            }
+            else if (m_CharacterController.isGrounded)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
             }

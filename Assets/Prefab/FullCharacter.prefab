@@ -71,7 +71,6 @@ MonoBehaviour:
   m_WalkSpeed: 5
   m_RunSpeed: 10
   m_RunstepLenghten: 0.7
-  m_JumpSpeed: 10
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
@@ -170,15 +169,14 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     VerticaltoHorizontalRatio: 2
-  m_JumpBob:
-    BobDuration: 0.2
-    BobAmount: 0.1
   m_StepInterval: 5
   m_FootstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  m_CharacterController: {fileID: 0}
+  isClimbing: 0
 --- !u!54 &4969487376684980613
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5414,11 +5412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_SpawnObject
       objectReference: {fileID: 0}
-    - target: {fileID: 4928105884484836560, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4928105884484836559, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5476,6 +5469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4928105884484836557, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
         type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928105884484836557, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
+        type: 3}
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
@@ -5483,11 +5481,6 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928105884484836557, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d0449b22fb07f48aa50e514e8e8a9c, type: 3}
@@ -5510,11 +5503,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4969487376798627484}
     m_Modifications:
-    - target: {fileID: 5075353830670708998, guid: 37d9150ec063009488a9e7d05e7e464b,
-        type: 3}
-      propertyPath: m_Name
-      value: PS_StoreObject
-      objectReference: {fileID: 0}
     - target: {fileID: 5075353830670709017, guid: 37d9150ec063009488a9e7d05e7e464b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5572,6 +5560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075353830670709019, guid: 37d9150ec063009488a9e7d05e7e464b,
         type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075353830670709019, guid: 37d9150ec063009488a9e7d05e7e464b,
+        type: 3}
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
@@ -5580,10 +5573,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5075353830670709019, guid: 37d9150ec063009488a9e7d05e7e464b,
+    - target: {fileID: 5075353830670708998, guid: 37d9150ec063009488a9e7d05e7e464b,
         type: 3}
-      propertyPath: lengthInSec
-      value: 1
+      propertyPath: m_Name
+      value: PS_StoreObject
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d9150ec063009488a9e7d05e7e464b, type: 3}
