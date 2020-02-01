@@ -12,6 +12,10 @@ public class GravityGun : MonoBehaviour
 
     public Image[] pickups;
 
+    public AudioClip slurpSFX;
+    public AudioClip startMoveSFX;
+    public AudioSource audioSource;
+
     private void Awake()
     {
         instance = this;
@@ -20,7 +24,7 @@ public class GravityGun : MonoBehaviour
 
     public Grabbable currentGrabbed;
 
-    public List<Grabbable> storedGrapped;
+    public List<Grabbable> storedGrapped = new List<Grabbable>();
 
     public Transform gravitySpot;
     public Transform dropSpot;
@@ -58,6 +62,8 @@ public class GravityGun : MonoBehaviour
             showBeam = false;
             storedGrapped.Add(currentGrabbed);
             ps_storeObject.Play();
+            audioSource.clip = slurpSFX;
+            audioSource.Play();
             currentGrabbed.StoreCurrentObject();
             currentGrabbed = null;
         }

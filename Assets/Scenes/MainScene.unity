@@ -1168,6 +1168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 1368101823}
 --- !u!23 &303409090
 MeshRenderer:
@@ -6323,6 +6324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 303409088}
 --- !u!23 &420303587
 MeshRenderer:
@@ -6461,6 +6463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 1368101823}
 --- !u!23 &515743268
 MeshRenderer:
@@ -12209,7 +12212,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19906
+  m_Name: pb_Mesh34626
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12447,7 +12450,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19768
+  m_Name: pb_Mesh34432
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12695,6 +12698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 1368101823}
 --- !u!23 &1100160868
 MeshRenderer:
@@ -12974,6 +12978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 1142863747}
 --- !u!23 &1142863749
 MeshRenderer:
@@ -13112,6 +13117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 1368101823}
 --- !u!23 &1174061648
 MeshRenderer:
@@ -13165,7 +13171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19812
+  m_Name: pb_Mesh34470
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18263,6 +18269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 1368101823}
 --- !u!23 &1368101825
 MeshRenderer:
@@ -24101,7 +24108,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19868
+  m_Name: pb_Mesh34580
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33977,6 +33984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &108377835371298230
 MeshCollider:
@@ -34055,6 +34063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &321036263145169504
 MeshCollider:
@@ -34133,6 +34142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 483473154142354180}
 --- !u!64 &483473154142354182
 MeshCollider:
@@ -34364,6 +34374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 321036263145169502}
 --- !u!64 &1942649106674129909
 MeshCollider:
@@ -34653,6 +34664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &4035437501352047067
 MeshCollider:
@@ -34749,6 +34761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &4761296740038065749
 MeshCollider:
@@ -34886,8 +34899,7 @@ PrefabInstance:
       propertyPath: pickups.Array.data[9]
       value: 
       objectReference: {fileID: 2053706377}
-    m_RemovedComponents:
-    - {fileID: 4969487377228224171, guid: 8917cf0266afdcb4cbc60328a52a89c2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8917cf0266afdcb4cbc60328a52a89c2, type: 3}
 --- !u!4 &4987532334689601321
 Transform:
@@ -35124,6 +35136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalOverride: {fileID: 0}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &7475611132305289402
 MeshCollider:
