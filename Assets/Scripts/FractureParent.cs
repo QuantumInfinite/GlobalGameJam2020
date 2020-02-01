@@ -92,7 +92,6 @@ public class FractureParent : MonoBehaviour
             {
                 if (piece.gameObject.activeInHierarchy && Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
                 {
-                    Debug.Log("E");
                     nearbyPieces.Add(piece);
                     float endTime = Time.realtimeSinceStartup + maxReturnDuration;
                     float ascendTime = Time.realtimeSinceStartup + ascendDuration;
