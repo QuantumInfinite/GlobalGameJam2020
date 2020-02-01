@@ -13,24 +13,22 @@ public class FractureParent : MonoBehaviour
     public float explosionForce = 2f;
 
     public UnityEvent OnFail;
-    public UnityEvent OnAssemble;
+    public UnityEvent OnSuccess;
 
     List<ReturnToHome> nearbyPieces;
+    bool returning = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         completePiece.SetActive(false);
     }
-    bool returning = false;
-    // Update is called once per frame
+
     void Update()
     {
         if (!returning && Input.GetKeyDown(KeyCode.Equals))
         {
             returning = true;
-
-
+            
             nearbyPieces = new List<ReturnToHome>();
 
             foreach (var piece in allPieces)
@@ -41,39 +39,59 @@ public class FractureParent : MonoBehaviour
                     piece.StartCoroutine(piece.GoHome(returnSpeed, Time.realtimeSinceStartup + maxReturnTime));
                 }
             }
-
             Invoke("Check", maxReturnTime * 0.9f);
+        }
+        else if (returning && !Input.GetKey(KeyCode.Equals))
+        {
+            //If we are supposed to be returning but they let go of the key
+            returning = false;
+            CancelInvoke("Check");
+            Fail();
         }
     }
 
     void Check()
     {
+        if(returning == false)
+        {
+            return;
+        }
+
         if (nearbyPieces.Count == allPieces.Count)
         {
-
-            Debug.Log("Assembled!");
-            completePiece.SetActive(true);
-            foreach (var piece in nearbyPieces)
-            {
-               piece.gameObject.SetActive(false);
-            }
-            OnAssemble.Invoke();
+            Success();
         }
         else
         {
-            Debug.Log("Failed");
-            foreach (var piece in nearbyPieces)
-            {
-                piece.StopAllCoroutines();
-                piece.Unlock();
-
-                piece.rigid.AddExplosionForce(explosionForce, transform.position, 5f, -2f, ForceMode.Impulse);
-
-                returning = false;
-            }
-            OnFail.Invoke();
+            Fail();
         }
 
+    }
+
+    void Fail()
+    {
+        Debug.Log("Failed");
+        foreach (var piece in nearbyPieces)
+        {
+            piece.StopAllCoroutines();
+            piece.Unlock();
+
+            piece.rigid.AddExplosionForce(explosionForce, transform.position, 5f, -2f, ForceMode.Impulse);
+
+            returning = false;
+        }
+        OnFail.Invoke();
+    }
+
+    void Success()
+    {
+        Debug.Log("Success!");
+        completePiece.SetActive(true);
+        foreach (var piece in nearbyPieces)
+        {
+            piece.gameObject.SetActive(false);
+        }
+        OnSuccess.Invoke();
     }
 
     void OnDrawGizmosSelected()
