@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using System.Linq;
 public class FractureParent : MonoBehaviour
 {
     public GameObject completePiece;
@@ -57,7 +57,7 @@ public class FractureParent : MonoBehaviour
             return;
         }
 
-        if (nearbyPieces.Count == allPieces.Count)
+        if (nearbyPieces.Count == allPieces.Count && allPieces.All(x => x.gameObject.activeInHierarchy))
         {
             Success();
         }
