@@ -33,4 +33,15 @@ public class PlayOnTriggerEnter : MonoBehaviour
         }
         
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (audioSource && audioSource.loop)
+            {
+                audioSource.Stop();
+            }
+        }
+    }
 }
