@@ -32,6 +32,9 @@ public class Grabbable : MonoBehaviour
     public void UnsetCurrentObject()
     {
         GravityGun.instance.isBusy = true;
+        transform.position = transform.parent.position;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         StartCoroutine(SetScale(Size.GoBig));
     }
 
@@ -102,6 +105,11 @@ public class Grabbable : MonoBehaviour
         if(size == Size.GoDisappear)
         {
             gameObject.SetActive(false);
+            if(GravityGun.instance.storedGrapped.Count >= GravityGun.instance.carryCapacity)
+            {
+                GravityGun.instance.storedGrapped[0].gameObject.SetActive(true);
+                GravityGun.instance.storedGrapped[0].UnsetCurrentObject();
+            }
         }
 
         GravityGun.instance.isBusy = false;

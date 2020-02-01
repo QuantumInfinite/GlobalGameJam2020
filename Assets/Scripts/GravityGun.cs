@@ -20,7 +20,6 @@ public class GravityGun : MonoBehaviour
     public bool isBusy = false;
 
     public float teleportSpeed = 1f;
-    public float dropTimeBetween = 0.5f;
 
     public float scaleTime = 0.1f;
 
@@ -28,6 +27,8 @@ public class GravityGun : MonoBehaviour
     public float startScalingWhenMoving = 0.9f;
 
     public Vector3 smallScale = new Vector3(0.1f, 0.1f, 0.1f);
+
+    public int carryCapacity = 9;
 
     private void Update()
     {
@@ -45,25 +46,15 @@ public class GravityGun : MonoBehaviour
             currentGrabbed = null;
         }
 
-        //drop all stored items
-        if (!isBusy && Input.GetKeyDown(KeyCode.E))
+        //drops a single object
+        if (!isBusy && Input.GetKeyDown(KeyCode.E) && storedGrapped.Count > 0)
         {
-            StartCoroutine(DropStoredItems());
+            storedGrapped[0].gameObject.SetActive(true);
+            storedGrapped[0].UnsetCurrentObject();
+            storedGrapped.Remove(storedGrapped[0]);
         }
     }
 
-    public IEnumerator DropStoredItems()
-    {
-        isBusy = true;
-        foreach (var item in storedGrapped)
-        {
-            item.gameObject.SetActive(true);
-            item.UnsetCurrentObject();
-            yield return new WaitForSeconds(dropTimeBetween);
-        }
-        storedGrapped.Clear();
-        isBusy = false;
-    }
 }
 
 public enum Size {GoBig, GoSmall, GoDisappear}

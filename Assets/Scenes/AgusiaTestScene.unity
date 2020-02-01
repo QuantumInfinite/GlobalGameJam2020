@@ -1001,9 +1001,8 @@ MonoBehaviour:
   gravitySpot: {fileID: 445926105}
   isBusy: 0
   teleportSpeed: 1
-  dropTimeBetween: 0.5
   scaleTime: 0.5
-  startScalingWhenMoving: 0.9
+  startScalingWhenMoving: 0.5
   smallScale: {x: 0.1, y: 0.1, z: 0.1}
 --- !u!4 &922728086 stripped
 Transform:
