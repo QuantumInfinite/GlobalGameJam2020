@@ -1231,7 +1231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &327916766
 Transform:
   m_ObjectHideFlags: 0
@@ -13433,13 +13433,15 @@ GameObject:
   - component: {fileID: 1311001952}
   - component: {fileID: 1311001951}
   - component: {fileID: 1311001950}
+  - component: {fileID: 1311001954}
+  - component: {fileID: 1311001953}
   m_Layer: 0
   m_Name: Beacon System Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1311001950
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -18178,6 +18180,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &1311001953
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311001949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.42, y: 3.4200008, z: 1.6200004}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1311001954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311001949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1289d5aa3333fbe4b9118e0cc290953b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedFracture: {fileID: 1295291491661865941}
 --- !u!1 &1368101819
 GameObject:
   m_ObjectHideFlags: 0
@@ -34210,7 +34238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1295291491661865941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34236,7 +34264,7 @@ MonoBehaviour:
   returnSpeed: 5
   ascendSpeed: 1.5
   maxReturnDuration: 2
-  ascendDuration: 1
+  ascendDuration: 0.1
   explosionForce: 2
   OnFail:
     m_PersistentCalls:
