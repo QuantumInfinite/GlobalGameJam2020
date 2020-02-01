@@ -34264,7 +34264,7 @@ MonoBehaviour:
   returnSpeed: 5
   ascendSpeed: 1.5
   maxReturnDuration: 2
-  ascendDuration: 0.1
+  ascendDuration: 1
   explosionForce: 2
   OnFail:
     m_PersistentCalls:
