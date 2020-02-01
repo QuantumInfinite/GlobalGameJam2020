@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 922728081}
   m_Layer: 0
   m_Name: FPSController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,6 +326,8 @@ MonoBehaviour:
   startScalingWhenMoving: 0.9
   smallScale: {x: 0.4, y: 0.4, z: 0.4}
   carryCapacity: 9
+  showBeam: 0
+  beam: {fileID: 113865262}
   ps_spawnObject: {fileID: 6744152668770964265}
   ps_storeObject: {fileID: 5075353829957188190}
 --- !u!1 &100002
@@ -5529,11 +5531,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PS_SpawnObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928105884484836560, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4928105884484836560, guid: 99d0449b22fb07f48aa50e514e8e8a9c,
         type: 3}

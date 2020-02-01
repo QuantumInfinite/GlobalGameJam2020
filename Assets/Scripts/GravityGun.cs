@@ -38,6 +38,9 @@ public class GravityGun : MonoBehaviour
 
     public int carryCapacity;
 
+    public bool showBeam = false;
+
+    public GameObject beam;
     public ParticleSystem ps_spawnObject;
     public ParticleSystem ps_storeObject;
 
@@ -46,11 +49,13 @@ public class GravityGun : MonoBehaviour
         //drop item
         if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(0))
         {
-            currentGrabbed.UnsetCurrentObject();
+            showBeam = false;
+            currentGrabbed.UnsetCurrentObject(false);
         }
         //store item
         if (!isBusy && currentGrabbed && Input.GetMouseButtonDown(1))
         {
+            showBeam = false;
             storedGrapped.Add(currentGrabbed);
             ps_storeObject.Play();
             currentGrabbed.StoreCurrentObject();
@@ -58,10 +63,10 @@ public class GravityGun : MonoBehaviour
         }
 
         //drops a single object
-        if (!isBusy && Input.GetKeyDown(KeyCode.E) && storedGrapped.Count > 0)
+        if (!isBusy && !currentGrabbed && Input.GetMouseButtonDown(1) && storedGrapped.Count > 0)
         {
             storedGrapped[0].gameObject.SetActive(true);
-            storedGrapped[0].UnsetCurrentObject();
+            storedGrapped[0].UnsetCurrentObject(true);
             storedGrapped.Remove(storedGrapped[0]);
         }
 
@@ -74,6 +79,8 @@ public class GravityGun : MonoBehaviour
             pickups[i].gameObject.SetActive(storedGrapped.Count > i);
             
         }
+
+        beam.SetActive(showBeam);
     }
 
 }
