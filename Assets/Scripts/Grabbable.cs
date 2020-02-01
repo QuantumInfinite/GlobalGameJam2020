@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Grabbable : MonoBehaviour
 {
+    public Sprite icon;
     Rigidbody rb;
     private Vector3 defaultScale; 
 
@@ -20,6 +21,15 @@ public class Grabbable : MonoBehaviour
             SetCurrentObject();
         }
 
+    }
+
+    private void OnMouseEnter()
+    {
+        GravityGun.instance.cursor.sprite = GravityGun.instance.grabbableCursor;
+    }
+    private void OnMouseExit()
+    {
+        GravityGun.instance.cursor.sprite = GravityGun.instance.normalCursor;
     }
 
     public void SetCurrentObject()
