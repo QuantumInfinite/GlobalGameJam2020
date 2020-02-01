@@ -20,7 +20,6 @@ public class Grabbable : MonoBehaviour
         {
             SetCurrentObject();
         }
-
     }
 
     private void OnMouseEnter()
@@ -36,6 +35,9 @@ public class Grabbable : MonoBehaviour
     {
         GravityGun.instance.isBusy = true;
         rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         StartCoroutine(MoveToPlayer());
     }
 
@@ -45,6 +47,7 @@ public class Grabbable : MonoBehaviour
         transform.position = transform.parent.position;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.None;
         StartCoroutine(SetScale(Size.GoBig));
     }
 
