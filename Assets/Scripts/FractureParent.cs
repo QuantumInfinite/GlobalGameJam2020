@@ -22,7 +22,15 @@ public class FractureParent : MonoBehaviour
     public UnityEvent OnSuccess;
 
     List<ReturnToHome> nearbyPieces;
-    bool returning = false;
+    bool ableToRewind = false;
+
+    enum State
+    {
+        Seperate, 
+        Returning, 
+        Assembled
+    }
+    State currentState;
     void Start()
     {
         completePiece.SetActive(false);
@@ -30,31 +38,31 @@ public class FractureParent : MonoBehaviour
 
     void Update()
     {
-        if (slowdown >= 0)
+        if (!ableToRewind && (Input.GetAxis("RewindTime") == 0))
         {
-            slowdown -= 1;
+            ableToRewind = true;
         }
     }
     public void OnTriggerEnter(Collider other)
     {
         
     }
-    float slowdown = 1;
     public void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && slowdown <= 0)
+        if (other.tag == "Player" && ableToRewind)
         {
-            if (!returning && (Input.GetAxis("RewindTime") != 0))
+            if (currentState == State.Seperate && (Input.GetAxis("RewindTime") != 0))
             {
                 //If we are not currently returning and they press the key
-                returning = true;
+                currentState = State.Returning;
 
                 nearbyPieces = new List<ReturnToHome>();
 
                 foreach (var piece in allPieces)
                 {
-                    if (Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
+                    if (piece.gameObject.activeInHierarchy && Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
                     {
+                        Debug.Log("E");
                         nearbyPieces.Add(piece);
                         float endTime = Time.realtimeSinceStartup + maxReturnDuration;
                         float ascendTime = Time.realtimeSinceStartup + ascendDuration;
@@ -63,13 +71,9 @@ public class FractureParent : MonoBehaviour
                 }
                 Invoke("Check", maxReturnDuration * 0.9f);
             }
-            else if (returning && (Input.GetAxis("RewindTime") == 0))
+            else if (currentState == State.Returning && (Input.GetAxis("RewindTime") == 0))
             {
-
-                //If we are supposed to be returning but they let go of the key
-                returning = false;
-                CancelInvoke("Check");
-                Fail();
+                Interupt();
             }
         }
     }
@@ -78,18 +82,16 @@ public class FractureParent : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (returning)
+            if (currentState == State.Returning)
             {
-                returning = false;
-                CancelInvoke("Check");
-                Fail();
+                Interupt();
             }
         }
     }
 
     void Check()
     {
-        if(returning == false)
+        if(currentState == State.Seperate)
         {
             return;
         }
@@ -104,9 +106,19 @@ public class FractureParent : MonoBehaviour
         }
 
     }
-
+    void Interupt()
+    {
+        if (currentState == State.Returning)
+        {
+            //CancelInvoke("Check");
+            Fail();
+        }
+    }
     void Fail()
     {
+        ////Remove outstanding invokes
+        //CancelInvoke("Check");
+        ableToRewind = false;
         Debug.Log("Failed");
         foreach (var piece in nearbyPieces)
         {
@@ -115,7 +127,7 @@ public class FractureParent : MonoBehaviour
 
             piece.rigid.AddExplosionForce(explosionForce, transform.position, 5f, -2f, ForceMode.Impulse);
 
-            returning = false;
+            currentState = State.Seperate;
         }
         OnFail.Invoke();
     }
@@ -124,6 +136,7 @@ public class FractureParent : MonoBehaviour
     {
         Debug.Log("Success!");
         completePiece.SetActive(true);
+        currentState = State.Assembled;
         foreach (var piece in nearbyPieces)
         {
             piece.gameObject.SetActive(false);
