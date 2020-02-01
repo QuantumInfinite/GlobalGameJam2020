@@ -16,7 +16,7 @@ public class FractureParent : MonoBehaviour
     public float maxReturnDuration = 2f;
     public float ascendDuration = 1f;
     public float explosionForce = 2f;
-
+    public bool triggerOverride = false;
     [Header("Events")]
     public UnityEvent OnFail;
     public UnityEvent OnSuccess;
@@ -42,6 +42,11 @@ public class FractureParent : MonoBehaviour
         {
             ableToRewind = true;
         }
+
+        if (triggerOverride)
+        {
+            MainLoop();
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -51,30 +56,7 @@ public class FractureParent : MonoBehaviour
     {
         if (other.tag == "Player" && ableToRewind)
         {
-            if (currentState == State.Seperate && (Input.GetAxis("RewindTime") != 0))
-            {
-                //If we are not currently returning and they press the key
-                currentState = State.Returning;
-
-                nearbyPieces = new List<ReturnToHome>();
-
-                foreach (var piece in allPieces)
-                {
-                    if (piece.gameObject.activeInHierarchy && Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
-                    {
-                        Debug.Log("E");
-                        nearbyPieces.Add(piece);
-                        float endTime = Time.realtimeSinceStartup + maxReturnDuration;
-                        float ascendTime = Time.realtimeSinceStartup + ascendDuration;
-                        piece.StartCoroutine(piece.GoHome(returnSpeed, endTime, ascendSpeed, ascendTime));
-                    }
-                }
-                Invoke("Check", maxReturnDuration * 0.9f);
-            }
-            else if (currentState == State.Returning && (Input.GetAxis("RewindTime") == 0))
-            {
-                Interupt();
-            }
+            MainLoop();
         }
     }
 
@@ -86,6 +68,39 @@ public class FractureParent : MonoBehaviour
             {
                 Interupt();
             }
+        }
+    }
+
+    void MainLoop()
+    {
+        if (!ableToRewind)
+        {
+            return;
+        }
+
+        if (currentState == State.Seperate && (Input.GetAxis("RewindTime") != 0))
+        {
+            //If we are not currently returning and they press the key
+            currentState = State.Returning;
+
+            nearbyPieces = new List<ReturnToHome>();
+
+            foreach (var piece in allPieces)
+            {
+                if (piece.gameObject.activeInHierarchy && Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
+                {
+                    Debug.Log("E");
+                    nearbyPieces.Add(piece);
+                    float endTime = Time.realtimeSinceStartup + maxReturnDuration;
+                    float ascendTime = Time.realtimeSinceStartup + ascendDuration;
+                    piece.StartCoroutine(piece.GoHome(returnSpeed, endTime, ascendSpeed, ascendTime));
+                }
+            }
+            Invoke("Check", maxReturnDuration * 0.9f);
+        }
+        else if (currentState == State.Returning && (Input.GetAxis("RewindTime") == 0))
+        {
+            Interupt();
         }
     }
 
@@ -106,6 +121,7 @@ public class FractureParent : MonoBehaviour
         }
 
     }
+    //TODO remove this
     void Interupt()
     {
         if (currentState == State.Returning)
