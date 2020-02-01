@@ -47,12 +47,16 @@ public class ReturnToHome : MonoBehaviour
     public IEnumerator GoHome(float returnSpeed, float endTime, float ascendSpeed, float ascendTime)
     {
         rigid.useGravity = false;
+        rigid.velocity = Vector3.zero;
+        rigid.angularVelocity = Vector3.zero;
+
         grabbable.enabled = false;
+
+
         bool stillCorrecting = true;
         while (stillCorrecting && Time.realtimeSinceStartup < ascendTime)
         {
             float translation = (goalPos.y - transform.position.y) * ascendSpeed * Time.deltaTime;
-
             rigid.MovePosition(transform.position + new Vector3(0, translation, 0));
 
             transform.rotation = goalRot;
@@ -65,11 +69,6 @@ public class ReturnToHome : MonoBehaviour
             rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
 
-            
-
-           // Debug.Log(Vector3.Distance(transform.position, origionalPos) + " | " + Quaternion.Angle(transform.rotation, origionalRot));
-
-
             stillCorrecting = false;
             if (Vector3.Distance(transform.position, goalPos) > 0.01)
             {
@@ -80,12 +79,10 @@ public class ReturnToHome : MonoBehaviour
 
                 stillCorrecting = true;
             }
+
             if(Quaternion.Angle(transform.rotation, goalRot) > 20)
             {
                 //Rotation
-
-                //Vector3 tran = (origionalRot.eulerAngles - transform.rotation.eulerAngles) * returnSpeed * Time.deltaTime;
-
                 transform.rotation = goalRot;
                 stillCorrecting = true;
             }

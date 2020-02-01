@@ -68,7 +68,8 @@ public class FractureParent : MonoBehaviour
         {
             if (currentState == State.Returning)
             {
-                Interupt();
+                //Interupt();
+                Fail();
             }
         }
     }
@@ -102,7 +103,7 @@ public class FractureParent : MonoBehaviour
         }
         else if (currentState == State.Returning && (Input.GetAxis("RewindTime") == 0))
         {
-            Interupt();
+            Fail();
         }
     }
 
@@ -122,15 +123,6 @@ public class FractureParent : MonoBehaviour
             Fail();
         }
 
-    }
-    //TODO remove this
-    void Interupt()
-    {
-        if (currentState == State.Returning)
-        {
-            CancelInvoke("Check");
-            Fail();
-        }
     }
     void Fail()
     {
@@ -152,6 +144,8 @@ public class FractureParent : MonoBehaviour
 
     void Success()
     {
+        //Remove outstanding invokes
+        CancelInvoke("Check");
         Debug.Log("Success!");
         completePiece.SetActive(true);
         currentState = State.Assembled;
