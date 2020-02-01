@@ -9,9 +9,13 @@ public class GravityGun : MonoBehaviour
     public Sprite normalCursor;
     public Sprite grabbableCursor;
     public Image cursor;
+
+    public Image[] pickups;
+
     private void Awake()
     {
         instance = this;
+        carryCapacity = pickups.Length;
     }
 
     public Grabbable currentGrabbed;
@@ -31,14 +35,13 @@ public class GravityGun : MonoBehaviour
 
     public Vector3 smallScale = new Vector3(0.1f, 0.1f, 0.1f);
 
-    public int carryCapacity = 9;
+    public int carryCapacity;
 
     private void Update()
     {
         //drop item
         if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Dropped Item");
             currentGrabbed.UnsetCurrentObject();
         }
         //store item
@@ -55,6 +58,16 @@ public class GravityGun : MonoBehaviour
             storedGrapped[0].gameObject.SetActive(true);
             storedGrapped[0].UnsetCurrentObject();
             storedGrapped.Remove(storedGrapped[0]);
+        }
+
+        for(int i = 0; i < pickups.Length; i++)
+        {
+            if(storedGrapped.Count > i)
+            {
+                pickups[i].sprite = storedGrapped[i].icon;
+            }
+            pickups[i].gameObject.SetActive(storedGrapped.Count > i);
+            
         }
     }
 
