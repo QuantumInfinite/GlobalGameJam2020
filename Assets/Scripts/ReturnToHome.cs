@@ -7,7 +7,7 @@ public class ReturnToHome : MonoBehaviour
     public Transform goalOverride;
     Vector3 goalPos;
     Quaternion goalRot;
-
+    [HideInInspector]
     public Rigidbody rigid;
     Collider myCollider;
     Grabbable grabbable;
