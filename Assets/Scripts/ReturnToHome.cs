@@ -4,25 +4,43 @@ using UnityEngine;
 
 public class ReturnToHome : MonoBehaviour
 {
-    Vector3 origionalPos;
-    Quaternion origionalRot;
-    Vector3 origionalRotation;
+    public Transform goalOverride;
+    Vector3 goalPos;
+    Quaternion goalRot;
 
     public Rigidbody rigid;
     Collider myCollider;
     Grabbable grabbable;
+    AudioSource audioSource;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
         grabbable = GetComponent<Grabbable>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        origionalPos = transform.position;
-        origionalRot = transform.rotation;
-        origionalRotation = transform.rotation.eulerAngles;        
+        if (goalOverride == null)
+        {
+            goalPos = transform.position;
+            goalRot = transform.rotation;
+        }
+        else
+        {
+            goalPos = goalOverride.position;
+            goalRot = goalOverride.rotation;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude > 2)
+        {
+            Debug.Log(collision.relativeVelocity.magnitude);
+            audioSource.Play();
+        }
     }
 
     public IEnumerator GoHome(float returnSpeed, float forceEndTime)
@@ -42,22 +60,22 @@ public class ReturnToHome : MonoBehaviour
 
 
             stillCorrecting = false;
-            if (Vector3.Distance(transform.position, origionalPos) > 0.01)
+            if (Vector3.Distance(transform.position, goalPos) > 0.01)
             {
                 //Movement
-                Vector3 translation = (origionalPos - transform.position) * returnSpeed * Time.deltaTime;
+                Vector3 translation = (goalPos - transform.position) * returnSpeed * Time.deltaTime;
 
                 rigid.MovePosition(transform.position + translation);
 
                 stillCorrecting = true;
             }
-            if(Quaternion.Angle(transform.rotation, origionalRot) > 20)
+            if(Quaternion.Angle(transform.rotation, goalRot) > 20)
             {
                 //Rotation
 
                 //Vector3 tran = (origionalRot.eulerAngles - transform.rotation.eulerAngles) * returnSpeed * Time.deltaTime;
 
-                transform.rotation = origionalRot;
+                transform.rotation = goalRot;
                 stillCorrecting = true;
             }
 
@@ -68,13 +86,14 @@ public class ReturnToHome : MonoBehaviour
         
         yield return null;
     }
+    
 
     public void LockDown()
     {
         myCollider.enabled = false;
 
-        transform.position = origionalPos;
-        transform.rotation = origionalRot;
+        transform.position = goalPos;
+        transform.rotation = goalRot;
 
         rigid.isKinematic = true;
         rigid.constraints = RigidbodyConstraints.FreezeAll;
