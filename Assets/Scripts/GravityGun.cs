@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GravityGun : MonoBehaviour
 {
     public static GravityGun instance;
-
+    public Sprite normalCursor;
+    public Sprite grabbableCursor;
+    public Image cursor;
     private void Awake()
     {
         instance = this;
