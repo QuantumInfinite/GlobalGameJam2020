@@ -49,13 +49,15 @@ public class GravityGun : MonoBehaviour
     public ParticleSystem ps_spawnObject;
     public ParticleSystem ps_storeObject;
 
+    public float throwSpeed = 1000f;
+
     private void Update()
     {
         //drop item
         if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(0))
         {
             showBeam = false;
-            currentGrabbed.UnsetCurrentObject(false);
+            currentGrabbed.UnsetCurrentObject(false, scaleTime);
         }
         //store item
         if (!isBusy && currentGrabbed && Input.GetMouseButtonDown(1))
@@ -73,7 +75,7 @@ public class GravityGun : MonoBehaviour
         if (!isBusy && !currentGrabbed && Input.GetMouseButtonDown(1) && storedGrapped.Count > 0)
         {
             storedGrapped[0].gameObject.SetActive(true);
-            storedGrapped[0].UnsetCurrentObject(true);
+            storedGrapped[0].UnsetCurrentObject(true, scaleTime);
             storedGrapped.Remove(storedGrapped[0]);
         }
 
@@ -85,6 +87,14 @@ public class GravityGun : MonoBehaviour
             }
             pickups[i].gameObject.SetActive(storedGrapped.Count > i);
             
+        }
+
+        //throwing object
+        if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(2))
+        {
+            showBeam = false;
+            currentGrabbed.UnsetCurrentObject(false, 0.1f);
+            currentGrabbed.rb.AddForce(transform.forward * throwSpeed);
         }
 
         beam.SetActive(showBeam);

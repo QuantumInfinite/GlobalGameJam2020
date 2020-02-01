@@ -6,7 +6,7 @@ using UnityEngine;
 public class Grabbable : MonoBehaviour
 {
     public Sprite icon;
-    Rigidbody rb;
+    public Rigidbody rb;
     private Vector3 defaultScale;
     
 
@@ -45,7 +45,7 @@ public class Grabbable : MonoBehaviour
         StartCoroutine(MoveToPlayer());
     }
 
-    public void UnsetCurrentObject(bool fromDrop)
+    public void UnsetCurrentObject(bool fromDrop, float scaleTime)
     {
         GravityGun.instance.isBusy = true;
         transform.position = fromDrop ? GravityGun.instance.dropSpot.position : GravityGun.instance.gravitySpot.position;
@@ -59,13 +59,13 @@ public class Grabbable : MonoBehaviour
             GravityGun.instance.audioSource.Play();
             GravityGun.instance.ps_spawnObject.Play();
         }
-        StartCoroutine(SetScale(Size.GoBig));
+        StartCoroutine(SetScale(Size.GoBig, scaleTime));
     }
 
     public void StoreCurrentObject()
     {
         GravityGun.instance.isBusy = true;
-        StartCoroutine(SetScale(Size.GoDisappear));
+        StartCoroutine(SetScale(Size.GoDisappear, GravityGun.instance.scaleTime));
     }
 
     private IEnumerator MoveToPlayer()
@@ -93,7 +93,7 @@ public class Grabbable : MonoBehaviour
         GravityGun.instance.isBusy = false;
     }
 
-    private IEnumerator SetScale(Size size)
+    private IEnumerator SetScale(Size size, float scaleTime)
     {
         float currentTime = 0;
         Vector3 startScale = transform.localScale;
@@ -112,13 +112,13 @@ public class Grabbable : MonoBehaviour
                 break;
                 
         }
-        while (currentTime < GravityGun.instance.scaleTime)
+        while (currentTime < scaleTime)
         {
             currentTime += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(startScale, endScale, currentTime / GravityGun.instance.scaleTime);
+            transform.localScale = Vector3.Lerp(startScale, endScale, currentTime / scaleTime);
             if(startPos != GravityGun.instance.dropSpot.position)
             {
-                transform.position = Vector3.Lerp(startPos, GravityGun.instance.dropSpot.position, currentTime / GravityGun.instance.scaleTime);
+                transform.position = Vector3.Lerp(startPos, GravityGun.instance.dropSpot.position, currentTime / scaleTime);
             }
             yield return new WaitForFixedUpdate();
             
@@ -136,7 +136,7 @@ public class Grabbable : MonoBehaviour
             if(GravityGun.instance.storedGrapped.Count >= GravityGun.instance.carryCapacity)
             {
                 GravityGun.instance.storedGrapped[0].gameObject.SetActive(true);
-                GravityGun.instance.storedGrapped[0].UnsetCurrentObject(true);
+                GravityGun.instance.storedGrapped[0].UnsetCurrentObject(true, scaleTime);
             }
         }
 

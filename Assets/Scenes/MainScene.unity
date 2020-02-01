@@ -1245,6 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &303409088
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6401,6 +6402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &420303585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6540,6 +6542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &515743266
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7050,6 +7053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &598611298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12775,6 +12779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &1100160866
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13055,6 +13060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &1142863747
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13194,6 +13200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &1174061646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18374,6 +18381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &1368101823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34089,6 +34097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &108377835371298228
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34168,6 +34177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &321036263145169502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34247,6 +34257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &483473154142354180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34487,6 +34498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &1942649106674129907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34777,6 +34789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &4035437501352047065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34874,6 +34887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &4761296740038065747
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35040,6 +35054,16 @@ PrefabInstance:
       propertyPath: pickups.Array.data[9]
       value: 
       objectReference: {fileID: 2053706377}
+    - target: {fileID: 4969487377067203834, guid: 8917cf0266afdcb4cbc60328a52a89c2,
+        type: 3}
+      propertyPath: throwSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969487377067203834, guid: 8917cf0266afdcb4cbc60328a52a89c2,
+        type: 3}
+      propertyPath: scaleTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8917cf0266afdcb4cbc60328a52a89c2, type: 3}
 --- !u!4 &4987532334689601321
@@ -35249,6 +35273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!54 &7475611132305289400
 Rigidbody:
   m_ObjectHideFlags: 0
