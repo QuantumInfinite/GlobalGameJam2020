@@ -110,14 +110,14 @@ public class FractureParent : MonoBehaviour
     {
         if (currentState == State.Returning)
         {
-            //CancelInvoke("Check");
+            CancelInvoke("Check");
             Fail();
         }
     }
     void Fail()
     {
-        ////Remove outstanding invokes
-        //CancelInvoke("Check");
+        //Remove outstanding invokes
+        CancelInvoke("Check");
         ableToRewind = false;
         Debug.Log("Failed");
         foreach (var piece in nearbyPieces)
