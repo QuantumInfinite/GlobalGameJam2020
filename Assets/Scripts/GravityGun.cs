@@ -17,27 +17,36 @@ public class GravityGun : MonoBehaviour
 
     public Transform gravitySpot;
 
+    public bool isBusy = false;
+
     public float teleportSpeed = 1f;
     public float dropTimeBetween = 0.5f;
+
+    public float scaleTime = 0.1f;
+
+    [Range(0f, 1f)]
+    public float startScalingWhenMoving = 0.9f;
+
+    public Vector3 smallScale = new Vector3(0.1f, 0.1f, 0.1f);
 
     private void Update()
     {
         //drop item
-        if(currentGrabbed && Input.GetMouseButtonDown(0))
+        if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(0))
         {
             Debug.Log("Dropped Item");
             currentGrabbed.UnsetCurrentObject();
         }
         //store item
-        if (currentGrabbed && Input.GetMouseButtonDown(1))
+        if (!isBusy && currentGrabbed && Input.GetMouseButtonDown(1))
         {
             storedGrapped.Add(currentGrabbed);
-            currentGrabbed.gameObject.SetActive(false);
+            currentGrabbed.StoreCurrentObject();
             currentGrabbed = null;
         }
 
         //drop all stored items
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!isBusy && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(DropStoredItems());
         }
@@ -45,12 +54,16 @@ public class GravityGun : MonoBehaviour
 
     public IEnumerator DropStoredItems()
     {
+        isBusy = true;
         foreach (var item in storedGrapped)
         {
-            item.UnsetCurrentObject();
             item.gameObject.SetActive(true);
+            item.UnsetCurrentObject();
             yield return new WaitForSeconds(dropTimeBetween);
         }
         storedGrapped.Clear();
+        isBusy = false;
     }
 }
+
+public enum Size {GoBig, GoSmall, GoDisappear}

@@ -999,7 +999,12 @@ MonoBehaviour:
   currentGrabbed: {fileID: 0}
   storedGrapped: []
   gravitySpot: {fileID: 445926105}
+  isBusy: 0
   teleportSpeed: 1
+  dropTimeBetween: 0.5
+  scaleTime: 0.5
+  startScalingWhenMoving: 0.9
+  smallScale: {x: 0.1, y: 0.1, z: 0.1}
 --- !u!4 &922728086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0,
