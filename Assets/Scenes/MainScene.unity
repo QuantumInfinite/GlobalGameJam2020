@@ -34901,6 +34901,21 @@ PrefabInstance:
       propertyPath: pickups.Array.data[9]
       value: 
       objectReference: {fileID: 2053706377}
+    - target: {fileID: 6185575116432620980, guid: 8917cf0266afdcb4cbc60328a52a89c2,
+        type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185575116432620980, guid: 8917cf0266afdcb4cbc60328a52a89c2,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185575116432620980, guid: 8917cf0266afdcb4cbc60328a52a89c2,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8917cf0266afdcb4cbc60328a52a89c2, type: 3}
 --- !u!4 &4987532334689601321
