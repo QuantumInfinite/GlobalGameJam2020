@@ -7,6 +7,7 @@ Shader "ASESampleShaders/NormalExtrusion"
 		_ExtrusionPoint("ExtrusionPoint", Float) = 0
 		_ExtrusionAmount("Extrusion Amount", Range( -1 , 20)) = 0.5
 		_Albedo("Albedo", 2D) = "white" {}
+		_Tinit("Tinit", Color) = (0,0,0,0)
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
@@ -25,10 +26,11 @@ Shader "ASESampleShaders/NormalExtrusion"
 			float2 uv_texcoord;
 		};
 
-		uniform sampler2D _Albedo;
-		uniform float4 _Albedo_ST;
 		uniform float _ExtrusionPoint;
 		uniform float _ExtrusionAmount;
+		uniform sampler2D _Albedo;
+		uniform float4 _Albedo_ST;
+		uniform float4 _Tinit;
 
 		void vertexDataFunc( inout appdata_full v, out Input o )
 		{
@@ -41,7 +43,7 @@ Shader "ASESampleShaders/NormalExtrusion"
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
 			float2 uv_Albedo = i.uv_texcoord * _Albedo_ST.xy + _Albedo_ST.zw;
-			o.Albedo = tex2D( _Albedo, uv_Albedo ).rgb;
+			o.Albedo = ( tex2D( _Albedo, uv_Albedo ) * _Tinit ).rgb;
 			o.Alpha = 1;
 		}
 
@@ -51,21 +53,23 @@ Shader "ASESampleShaders/NormalExtrusion"
 	CustomEditor "ASEMaterialInspector"
 }
 /*ASEBEGIN
-Version=13803
-566;511;900;507;2038.401;664.2113;2.695082;True;False
-Node;AmplifyShaderEditor.PosVertexDataNode;18;-1312,128;Float;False;0;0;5;FLOAT3;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.TimeNode;25;-1312,272;Float;False;0;5;FLOAT4;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.SimpleAddOpNode;22;-1056,160;Float;False;2;2;0;FLOAT;0.0;False;1;FLOAT;0.0;False;1;FLOAT
-Node;AmplifyShaderEditor.RangedFloatNode;21;-1056,256;Float;False;Property;_ExtrusionPoint;ExtrusionPoint;0;0;0;0;0;0;1;FLOAT
-Node;AmplifyShaderEditor.SimpleDivideOpNode;19;-832,160;Float;False;2;0;FLOAT;0.0;False;1;FLOAT;5.0;False;1;FLOAT
-Node;AmplifyShaderEditor.SinOpNode;20;-656,160;Float;False;1;0;FLOAT;0.0;False;1;FLOAT
-Node;AmplifyShaderEditor.RangedFloatNode;3;-832,256;Float;False;Property;_ExtrusionAmount;Extrusion Amount;1;0;0.5;-1;20;0;1;FLOAT
-Node;AmplifyShaderEditor.SimpleDivideOpNode;24;-464,160;Float;False;2;0;FLOAT;0.0;False;1;FLOAT;10.0;False;1;FLOAT
-Node;AmplifyShaderEditor.NormalVertexDataNode;2;-304,0;Float;False;0;5;FLOAT3;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.SimpleMaxOpNode;26;-304,160;Float;False;2;0;FLOAT;0.0;False;1;FLOAT;0.0;False;1;FLOAT
-Node;AmplifyShaderEditor.SamplerNode;1;-384,-256;Float;True;Property;_Albedo;Albedo;2;0;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;0,0;False;1;FLOAT2;0,0;False;2;FLOAT;1.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;FLOAT;FLOAT;FLOAT;FLOAT
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;4;-48,16;Float;False;2;2;0;FLOAT3;0.0,0,0;False;1;FLOAT;0.0,0,0;False;1;FLOAT3
-Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;128,-256;Float;False;True;2;Float;ASEMaterialInspector;0;0;Standard;ASESampleShaders/NormalExtrusion;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;3;False;0;0;Opaque;0.5;True;True;0;False;Opaque;Geometry;All;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;False;0;255;255;0;0;0;0;0;0;0;0;False;0;4;10;25;False;0.5;True;0;Zero;Zero;0;Zero;Zero;OFF;OFF;0;False;0;0,0,0,0;VertexOffset;False;Cylindrical;False;Relative;0;;-1;-1;-1;-1;0;0;0;False;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0.0;False;4;FLOAT;0.0;False;5;FLOAT;0.0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0.0;False;9;FLOAT;0.0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0.0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
+Version=17700
+7;1;1612;543;1504.276;489.706;1.502058;True;True
+Node;AmplifyShaderEditor.PosVertexDataNode;18;-1312,128;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.TimeNode;25;-1312,272;Inherit;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleAddOpNode;22;-1056,160;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;21;-1056,256;Float;False;Property;_ExtrusionPoint;ExtrusionPoint;0;0;Create;True;0;0;False;0;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleDivideOpNode;19;-832,160;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;5;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SinOpNode;20;-656,160;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;3;-832,256;Float;False;Property;_ExtrusionAmount;Extrusion Amount;1;0;Create;True;0;0;False;0;0.5;0;-1;20;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleDivideOpNode;24;-464,160;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;10;False;1;FLOAT;0
+Node;AmplifyShaderEditor.NormalVertexDataNode;2;-304,0;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMaxOpNode;26;-304,160;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;1;-574.7614,-397.1935;Inherit;True;Property;_Albedo;Albedo;2;0;Create;True;0;0;False;0;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;0,0;False;1;FLOAT2;0,0;False;2;FLOAT;1;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;27;-544.4605,-157.7513;Inherit;False;Property;_Tinit;Tinit;3;0;Create;True;0;0;False;0;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;4;-48,16;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;28;-192.9789,-234.3562;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;128,-256;Float;False;True;-1;2;ASEMaterialInspector;0;0;Standard;ASESampleShaders/NormalExtrusion;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;-1;3;False;-1;False;0;False;-1;0;False;-1;False;0;Opaque;0.5;True;True;0;False;Opaque;;Geometry;All;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;0;4;10;25;False;0.5;True;0;0;False;-1;0;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;-1;-1;-1;-1;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;22;0;18;2
 WireConnection;22;1;25;1
 WireConnection;19;0;22;0
@@ -76,7 +80,9 @@ WireConnection;24;1;3;0
 WireConnection;26;0;24;0
 WireConnection;4;0;2;0
 WireConnection;4;1;26;0
-WireConnection;0;0;1;0
+WireConnection;28;0;1;0
+WireConnection;28;1;27;0
+WireConnection;0;0;28;0
 WireConnection;0;11;4;0
 ASEEND*/
-//CHKSM=514A9823D864937F5A3DBE606ADF4F106613B567
+//CHKSM=639050CE4D417740AE413E37F57F3AEC2B404038
