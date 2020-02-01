@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshCollider), typeof(Rigidbody), typeof(Grabbable))]
 public class ReturnToHome : MonoBehaviour
 {
     public Transform goalOverride;
@@ -54,6 +55,7 @@ public class ReturnToHome : MonoBehaviour
 
             rigid.MovePosition(transform.position + new Vector3(0, translation, 0));
 
+            transform.rotation = goalRot;
             yield return new WaitForEndOfFrame();
         }
 
