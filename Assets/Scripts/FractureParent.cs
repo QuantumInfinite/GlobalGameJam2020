@@ -17,9 +17,11 @@ public class FractureParent : MonoBehaviour
     public float ascendDuration = 1f;
     public float explosionForce = 2f;
     public bool triggerOverride = false;
+
     [Header("Events")]
     public UnityEvent OnFail;
     public UnityEvent OnSuccess;
+    public UnityEvent OnStart;
 
     List<ReturnToHome> nearbyPieces;
     bool ableToRewind = false;
@@ -82,6 +84,7 @@ public class FractureParent : MonoBehaviour
         {
             //If we are not currently returning and they press the key
             currentState = State.Returning;
+            OnStart.Invoke();
 
             nearbyPieces = new List<ReturnToHome>();
 
@@ -158,6 +161,11 @@ public class FractureParent : MonoBehaviour
             piece.gameObject.SetActive(false);
         }
         OnSuccess.Invoke();
+        if (triggerOverride)
+        {
+            //Make it so it cant be run again without interaction
+            triggerOverride = false;
+        }
     }
 
     void OnDrawGizmosSelected()
