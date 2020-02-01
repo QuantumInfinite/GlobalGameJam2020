@@ -38,18 +38,27 @@ public class ReturnToHome : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude > 2)
         {
-            Debug.Log(collision.relativeVelocity.magnitude);
+            audioSource.volume = collision.relativeVelocity.magnitude / 5;
             audioSource.Play();
         }
     }
 
-    public IEnumerator GoHome(float returnSpeed, float forceEndTime)
+    public IEnumerator GoHome(float returnSpeed, float endTime, float ascendSpeed, float ascendTime)
     {
         rigid.useGravity = false;
         grabbable.enabled = false;
-        //float forceEndTime = Time.realtimeSinceStartup + 2f;
         bool stillCorrecting = true;
-        while (stillCorrecting && Time.realtimeSinceStartup < forceEndTime)
+        while (stillCorrecting && Time.realtimeSinceStartup < ascendTime)
+        {
+            float translation = (goalPos.y - transform.position.y) * ascendSpeed * Time.deltaTime;
+
+            rigid.MovePosition(transform.position + new Vector3(0, translation, 0));
+
+            yield return new WaitForEndOfFrame();
+        }
+
+
+        while (stillCorrecting && Time.realtimeSinceStartup < endTime)
         {     
             rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;

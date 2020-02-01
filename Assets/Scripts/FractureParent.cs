@@ -12,7 +12,9 @@ public class FractureParent : MonoBehaviour
     [Header("Settings")]
     public float grabDistance = 5f;
     public float returnSpeed = 5;
-    public float maxReturnTime = 2f;
+    public float ascendSpeed = 1.5f;
+    public float maxReturnDuration = 2f;
+    public float ascendDuration = 1f;
     public float explosionForce = 2f;
 
     [Header("Events")]
@@ -34,11 +36,12 @@ public class FractureParent : MonoBehaviour
     {
         
     }
+    bool bypass = true;
     public void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (!returning && Input.GetAxis("RewindTime") != 0)
+            if (!returning && (Input.GetAxis("RewindTime") != 0))
             {
                 //If we are not currently returning and they press the key
                 returning = true;
@@ -50,12 +53,14 @@ public class FractureParent : MonoBehaviour
                     if (Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
                     {
                         nearbyPieces.Add(piece);
-                        piece.StartCoroutine(piece.GoHome(returnSpeed, Time.realtimeSinceStartup + maxReturnTime));
+                        float endTime = Time.realtimeSinceStartup + maxReturnDuration;
+                        float ascendTime = Time.realtimeSinceStartup + ascendDuration;
+                        piece.StartCoroutine(piece.GoHome(returnSpeed, endTime, ascendSpeed, ascendTime));
                     }
                 }
-                Invoke("Check", maxReturnTime * 0.9f);
+                Invoke("Check", maxReturnDuration * 0.9f);
             }
-            else if (returning && Input.GetAxis("RewindTime") == 0)
+            else if (returning && (Input.GetAxis("RewindTime") == 0))
             {
                 //If we are supposed to be returning but they let go of the key
                 returning = false;
