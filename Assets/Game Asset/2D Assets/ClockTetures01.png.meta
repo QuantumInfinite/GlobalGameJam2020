@@ -1,7 +1,16 @@
 fileFormatVersion: 2
 guid: 492fe6bd028d91445a01839ec4170457
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2377389506917577902
+    second: ClockTetures01_0
+  - first:
+      213: 8519231046111075834
+    second: ClockTetures01_1
+  - first:
+      213: -589791462563508454
+    second: ClockTetures01_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -108,7 +117,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ClockTetures01_0
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 136
+        width: 1688
+        height: 1680
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a4b4f38e2edc34da166d05c4683c65
+      internalID: 2377389506917577902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClockTetures01_1
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 977
+        width: 185
+        height: 677
+      alignment: 9
+      pivot: {x: 0.51246166, y: 0.108366705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7029b3bcfee6caa4e881857d31907fd4
+      internalID: 8519231046111075834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClockTetures01_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 149
+        width: 187
+        height: 722
+      alignment: 9
+      pivot: {x: 0.45, y: 0.091263786}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e809e6f9b8793b4980b59dd8cc4bc5a
+      internalID: -589791462563508454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -30,7 +30,7 @@ Material:
     m_Floats:
     - <noninit>: 1
     - _Intensity: 10
-    - _Opacity: 0.222
+    - _Opacity: 0.118
     - _RimPower: 10
     - _ScanLines: 10
     - _Speed: 100
