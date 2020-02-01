@@ -44,7 +44,7 @@ public class Grabbable : MonoBehaviour
     public void UnsetCurrentObject()
     {
         GravityGun.instance.isBusy = true;
-        transform.position = transform.parent.position;
+        transform.position = GravityGun.instance.dropSpot.position;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.None;

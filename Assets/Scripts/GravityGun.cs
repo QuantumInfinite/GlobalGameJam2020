@@ -23,6 +23,7 @@ public class GravityGun : MonoBehaviour
     public List<Grabbable> storedGrapped;
 
     public Transform gravitySpot;
+    public Transform dropSpot;
 
     public bool isBusy = false;
 
