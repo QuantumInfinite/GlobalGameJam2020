@@ -7,7 +7,8 @@ public class Grabbable : MonoBehaviour
 {
     public Sprite icon;
     Rigidbody rb;
-    private Vector3 defaultScale; 
+    private Vector3 defaultScale;
+    
 
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class Grabbable : MonoBehaviour
     {
         if (GravityGun.instance.currentGrabbed == null && !GravityGun.instance.isBusy)
         {
+            GravityGun.instance.audioSource.clip = GravityGun.instance.startMoveSFX;
+            GravityGun.instance.audioSource.Play();
             SetCurrentObject();
         }
     }
