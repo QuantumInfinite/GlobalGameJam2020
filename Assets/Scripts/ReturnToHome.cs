@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshCollider), typeof(Rigidbody), typeof(Grabbable)]
+[RequireComponent(typeof(MeshCollider), typeof(Rigidbody), typeof(Grabbable))]
 [RequireComponent(typeof(LineRenderer))]
 public class ReturnToHome : MonoBehaviour
 {
