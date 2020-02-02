@@ -60,7 +60,7 @@ public class ReturnToHome : MonoBehaviour
         rigid.useGravity = false;
         rigid.velocity = Vector3.zero;
         rigid.angularVelocity = Vector3.zero;
-
+        myCollider.enabled = false;
         grabbable.enabled = false;
 
         yield return new WaitForSeconds(Random.Range(0, 0.5f));

@@ -8,7 +8,7 @@ public class InteractionZone : MonoBehaviour
     public FractureParent connectedFracture;
     public Image cursor;
     public Sprite newCursor;
-        public Sprite oldCursor;
+    public Sprite oldCursor;
 
     Collider myCollider;
 
@@ -22,7 +22,8 @@ public class InteractionZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         connectedFracture.OnTriggerEnter(other);
-        cursor.sprite = newCursor;
+        if (cursor && newCursor)
+            cursor.sprite = newCursor;
     }
     private void OnTriggerStay(Collider other)
     {
@@ -31,6 +32,7 @@ public class InteractionZone : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         connectedFracture.OnTriggerExit(other);
-        cursor.sprite = oldCursor;
+        if (cursor && oldCursor)
+            cursor.sprite = oldCursor;
     }
 }
