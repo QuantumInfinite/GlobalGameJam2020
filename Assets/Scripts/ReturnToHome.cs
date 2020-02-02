@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshCollider), typeof(Rigidbody), typeof(Grabbable))]
+[RequireComponent(typeof(MeshCollider), typeof(Rigidbody), typeof(Grabbable)]
+[RequireComponent(typeof(LineRenderer))]
 public class ReturnToHome : MonoBehaviour
 {
     public Transform goalOverride;
@@ -13,12 +14,14 @@ public class ReturnToHome : MonoBehaviour
     Collider myCollider;
     Grabbable grabbable;
     AudioSource audioSource;
+    LineRenderer lineRenderer;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
         grabbable = GetComponent<Grabbable>();
         audioSource = GetComponent<AudioSource>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     void Start()
@@ -33,8 +36,16 @@ public class ReturnToHome : MonoBehaviour
             goalPos = goalOverride.position;
             goalRot = goalOverride.rotation;
         }
+        lineRenderer.SetPosition(0, goalPos);
+        lineRenderer.enabled = false;
     }
-
+    private void Update()
+    {
+        if (lineRenderer.enabled)
+        {
+            lineRenderer.SetPosition(1, transform.position);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > 2 && audioSource != null)
@@ -52,6 +63,10 @@ public class ReturnToHome : MonoBehaviour
 
         grabbable.enabled = false;
 
+        yield return new WaitForSeconds(Random.Range(0, 0.5f));
+
+        lineRenderer.SetPosition(1, transform.position);
+        lineRenderer.enabled = true;
 
         bool stillCorrecting = true;
         while (stillCorrecting && Time.realtimeSinceStartup < ascendTime)
@@ -60,6 +75,8 @@ public class ReturnToHome : MonoBehaviour
             rigid.MovePosition(transform.position + new Vector3(0, translation, 0));
 
             transform.rotation = goalRot;
+
+            //lineRenderer.SetPosition(1, transform.position);
             yield return new WaitForEndOfFrame();
         }
 
@@ -105,6 +122,8 @@ public class ReturnToHome : MonoBehaviour
 
         rigid.isKinematic = true;
         rigid.constraints = RigidbodyConstraints.FreezeAll;
+
+        lineRenderer.enabled = false;
     }
     
     public void Unlock()
@@ -115,5 +134,7 @@ public class ReturnToHome : MonoBehaviour
 
         rigid.isKinematic = false;
         rigid.constraints = RigidbodyConstraints.None;
+
+        lineRenderer.enabled = false;
     }
 }
