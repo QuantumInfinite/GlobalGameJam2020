@@ -8,7 +8,6 @@ public class Grabbable : MonoBehaviour
     public Sprite icon;
     public Rigidbody rb;
     private Vector3 defaultScale;
-    
 
     private void Awake()
     {
@@ -88,7 +87,7 @@ public class Grabbable : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         GravityGun.instance.currentGrabbed = this;
-
+        GravityGun.instance.showBeam = false;
         transform.parent = GravityGun.instance.gravitySpot;
         GravityGun.instance.isBusy = false;
     }
