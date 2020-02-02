@@ -49,6 +49,11 @@ public class FractureParent : MonoBehaviour
         {
             MainLoop();
         }
+
+        if(transform.position.y < -10)
+        {
+            Debug.Log(gameObject.name + " fell out of map");
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
