@@ -105,6 +105,8 @@ GameObject:
   - component: {fileID: 5109156152205492976}
   - component: {fileID: 1575088993832156681}
   - component: {fileID: 8562843518425329709}
+  - component: {fileID: 450902161}
+  - component: {fileID: 450902160}
   m_Layer: 0
   m_Name: WallModel - prefab
   m_TagString: Untagged
@@ -121,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 1001770629863312085}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.03524231, y: 0.103651114, z: 0.10365109}
   m_Children:
   - {fileID: 1751984589629978708}
   - {fileID: 5067815809190185801}
@@ -187,6 +189,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 24.83663, y: 103.067085, z: 27.335966}
   m_Center: {x: 0, y: 1.9423368e-13, z: 13.667983}
+--- !u!65 &450902161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001770629863312085}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 24.836637, y: 103.06707, z: 1228}
+  m_Center: {x: -35.72, y: -0.0000063578286, z: 56.32272}
+--- !u!114 &450902160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001770629863312085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfae0d2a7aa2e134cae97f748f2e3a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  ps: {fileID: 0}
+  anim: {fileID: 0}
+  animTrigger: 
+  myGameObject: {fileID: 0}
+  turnOffObject: 0
+  MoveToStartLocation: 1
 --- !u!1 &3312620719643848374
 GameObject:
   m_ObjectHideFlags: 0

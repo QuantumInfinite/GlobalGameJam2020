@@ -32,6 +32,10 @@ public class PlayOnTriggerEnter : MonoBehaviour
             {
                 anim.SetTrigger(animTrigger);
             }
+            if(MoveToStartLocation)
+            {
+                GameManager.instance.PlayerExitsZone();
+            }
         }
         else if(grab && MoveToStartLocation)
         {

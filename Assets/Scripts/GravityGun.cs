@@ -17,10 +17,13 @@ public class GravityGun : MonoBehaviour
     public AudioClip spawnInSFX;
     public AudioSource audioSource;
 
+    public Vector3 playerStart;
+
     private void Awake()
     {
         instance = this;
         carryCapacity = pickups.Length;
+        playerStart = transform.position;
 
         cam = GetComponentInChildren<Camera>().transform;
         ps_meshOutline.transform.localScale = smallScale;
@@ -111,6 +114,7 @@ public class GravityGun : MonoBehaviour
     public void SetMesh(Grabbable grab)
     {
         ps_meshOutline.gameObject.SetActive(true);
+        ps_meshOutline.transform.localScale = grab.transform.lossyScale;
         ps_meshOutline.transform.rotation = grab.transform.rotation;
         var shape = ps_meshOutline.shape;
         shape.enabled = true;
