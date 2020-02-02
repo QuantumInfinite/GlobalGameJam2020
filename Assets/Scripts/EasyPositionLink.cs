@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class EasyPositionLink : MonoBehaviour
 {
     public ReturnToHome[] fracturePieces;
@@ -18,6 +18,13 @@ public class EasyPositionLink : MonoBehaviour
             return;
         }
         doIt = false;
+
+        var parent = GetComponent<FractureParent>();
+        if (parent)
+        {
+            parent.allPieces = fracturePieces.ToList();
+        }
+
         if (fracturePieces.Length > 0 && fracturePieces.Length == fractureTargets.Length)
         {
             for (int i = 0; i < fracturePieces.Length; i++)
@@ -34,7 +41,7 @@ public class EasyPositionLink : MonoBehaviour
                 lineRender.material = lineRenderMat;
                 lineRender.startColor = lineRenderColor;
 
-                target.GetComponent<MeshRenderer>().material = hologramMat;
+                target.GetComponent<MeshRenderer>().materials = new Material[] { hologramMat };
             }
         }
     }
