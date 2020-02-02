@@ -38,12 +38,15 @@ public class ReturnToHome : MonoBehaviour
         }
 
         //LineRenderer stuff
-        lineRenderer.SetPosition(0, goalPos);
-        lineRenderer.enabled = false;
+        if (lineRenderer)
+        {
+            lineRenderer.SetPosition(0, goalPos);
+            lineRenderer.enabled = false;
+        }
     }
     private void Update()
     {
-        if (lineRenderer.enabled)
+        if (lineRenderer && lineRenderer.enabled)
         {
             lineRenderer.SetPosition(1, transform.position);
         }
@@ -72,8 +75,12 @@ public class ReturnToHome : MonoBehaviour
         rigid.velocity = Vector3.zero;
         rigid.angularVelocity = Vector3.zero;
 
-        lineRenderer.SetPosition(1, transform.position);
-        lineRenderer.enabled = true;
+        if (lineRenderer)
+        {
+            lineRenderer.SetPosition(1, transform.position);
+            lineRenderer.enabled = true;
+        }
+
         float timeSinceStart = 0;
         Quaternion startRot = transform.rotation;
 
@@ -132,8 +139,10 @@ public class ReturnToHome : MonoBehaviour
 
         rigid.isKinematic = true;
         rigid.constraints = RigidbodyConstraints.FreezeAll;
-
-        lineRenderer.enabled = false;
+        if (lineRenderer)
+        {
+            lineRenderer.enabled = false;
+        }
     }
     
     public void Unlock()
@@ -144,7 +153,9 @@ public class ReturnToHome : MonoBehaviour
 
         rigid.isKinematic = false;
         rigid.constraints = RigidbodyConstraints.None;
-
-        lineRenderer.enabled = false;
+        if (lineRenderer)
+        {
+            lineRenderer.enabled = false;
+        }
     }
 }
