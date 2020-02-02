@@ -68,13 +68,13 @@ public class ReturnToHome : MonoBehaviour
 
     public IEnumerator GoHome(float returnSpeed, float endTime, float ascendSpeed, float ascendTime)
     {
-        rigid.useGravity = false;
-        rigid.velocity = Vector3.zero;
-        rigid.angularVelocity = Vector3.zero;
-        myCollider.enabled = false;
         grabbable.enabled = false;
 
         yield return new WaitForSeconds(Random.Range(0, 0.5f));
+        rigid.useGravity = false;
+        myCollider.enabled = false;
+        rigid.velocity = Vector3.zero;
+        rigid.angularVelocity = Vector3.zero;
 
         lineRenderer.SetPosition(1, transform.position);
         lineRenderer.enabled = true;
