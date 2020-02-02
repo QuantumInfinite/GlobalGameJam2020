@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnGameComplete;
 
+    public ParticleSystem ps_removePiece;
+    public ParticleSystem ps_showPiece;
+
     private int needToComplete;
 
     private void Awake()
@@ -20,7 +23,13 @@ public class GameManager : MonoBehaviour
 
     public void OnExitPlayZone(Grabbable grab)
     {
+        ps_removePiece.gameObject.transform.position = grab.transform.position;
+        ps_removePiece.Play();
+        grab.rb.velocity = Vector3.zero;
+        grab.rb.angularVelocity = Vector3.zero;
         grab.transform.position = grab.startLocation;
+        ps_showPiece.gameObject.transform.position = grab.startLocation;
+        ps_showPiece.Play();
     }
 
     public void Start()

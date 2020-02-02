@@ -40,8 +40,9 @@ public class EasyPositionLink : MonoBehaviour
                 lineRender.endWidth = 0.2f;
                 lineRender.material = lineRenderMat;
                 lineRender.startColor = lineRenderColor;
+                
 
-                target.GetComponent<MeshRenderer>().materials = new Material[] { hologramMat };
+                target.GetComponent<MeshRenderer>().materials = new Material[] { hologramMat, hologramMat };
             }
         }
     }
