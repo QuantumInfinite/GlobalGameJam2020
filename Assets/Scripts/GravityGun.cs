@@ -111,6 +111,7 @@ public class GravityGun : MonoBehaviour
     public void SetMesh(Grabbable grab)
     {
         ps_meshOutline.gameObject.SetActive(true);
+        ps_meshOutline.transform.localScale = grab.transform.lossyScale;
         ps_meshOutline.transform.rotation = grab.transform.rotation;
         var shape = ps_meshOutline.shape;
         shape.enabled = true;
