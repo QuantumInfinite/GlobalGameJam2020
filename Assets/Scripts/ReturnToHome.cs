@@ -40,10 +40,6 @@ public class ReturnToHome : MonoBehaviour
         //LineRenderer stuff
         lineRenderer.SetPosition(0, goalPos);
         lineRenderer.enabled = false;
-
-
-
-
     }
     private void Update()
     {
@@ -68,29 +64,32 @@ public class ReturnToHome : MonoBehaviour
 
     public IEnumerator GoHome(float returnSpeed, float endTime, float ascendSpeed, float ascendTime)
     {
-        rigid.useGravity = false;
-        rigid.velocity = Vector3.zero;
-        rigid.angularVelocity = Vector3.zero;
-        myCollider.enabled = false;
         grabbable.enabled = false;
 
         yield return new WaitForSeconds(Random.Range(0, 0.5f));
+        rigid.useGravity = false;
+        myCollider.enabled = false;
+        rigid.velocity = Vector3.zero;
+        rigid.angularVelocity = Vector3.zero;
 
         lineRenderer.SetPosition(1, transform.position);
         lineRenderer.enabled = true;
+        float currentTime = 0;
+        Quaternion startRot = transform.rotation;
 
-        bool stillCorrecting = true;
-        while (stillCorrecting && Time.realtimeSinceStartup < ascendTime)
+        while (Time.realtimeSinceStartup < ascendTime)
         {
             float translation = (goalPos.y - transform.position.y) * ascendSpeed * Time.deltaTime;
             rigid.MovePosition(transform.position + new Vector3(0, translation, 0));
 
-            transform.rotation = goalRot;
-
+            currentTime += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(startRot, goalRot, currentTime / (ascendTime - Time.realtimeSinceStartup));
+            
             //lineRenderer.SetPosition(1, transform.position);
             yield return new WaitForEndOfFrame();
         }
 
+        bool stillCorrecting = true;
 
         while (stillCorrecting && Time.realtimeSinceStartup < endTime)
         {     
