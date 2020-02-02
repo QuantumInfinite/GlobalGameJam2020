@@ -21,6 +21,8 @@ public class GravityGun : MonoBehaviour
     {
         instance = this;
         carryCapacity = pickups.Length;
+
+        cam = GetComponentInChildren<Camera>().transform;
     }
 
     public Grabbable currentGrabbed;
@@ -45,24 +47,23 @@ public class GravityGun : MonoBehaviour
 
     public bool showBeam = false;
 
+    private Transform cam;
+
     public GameObject beam;
     public ParticleSystem ps_spawnObject;
     public ParticleSystem ps_storeObject;
 
     public float throwSpeed = 1000f;
-
     private void Update()
     {
         //drop item
         if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(0))
         {
-            showBeam = false;
             currentGrabbed.UnsetCurrentObject(false, scaleTime);
         }
         //store item
         if (!isBusy && currentGrabbed && Input.GetMouseButtonDown(1))
         {
-            showBeam = false;
             storedGrapped.Add(currentGrabbed);
             ps_storeObject.Play();
             audioSource.clip = slurpSFX;
@@ -94,7 +95,7 @@ public class GravityGun : MonoBehaviour
         {
             showBeam = false;
             currentGrabbed.UnsetCurrentObject(false, 0.1f);
-            currentGrabbed.rb.AddForce(transform.forward * throwSpeed);
+            currentGrabbed.rb.AddForce(cam.forward * throwSpeed);
         }
 
         beam.SetActive(showBeam);
