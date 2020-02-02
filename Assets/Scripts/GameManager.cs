@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public List<FractureParent> gameEndingFractures;
-    public List<FractureParent> fractures;
 
     public UnityEvent OnGameComplete;
+    public UnityEvent OnExitZone;
 
     public ParticleSystem ps_removePiece;
     public ParticleSystem ps_showPiece;
@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         grab.transform.position = grab.startLocation;
         ps_showPiece.gameObject.transform.position = grab.startLocation;
         ps_showPiece.Play();
+        OnExitZone.Invoke();
+
     }
 
     public void Start()
