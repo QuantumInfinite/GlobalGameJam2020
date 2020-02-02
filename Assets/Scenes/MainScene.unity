@@ -33920,7 +33920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 1100160863}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &108377835371298230
 MeshCollider:
@@ -34097,7 +34097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 303409085}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &321036263145169504
 MeshCollider:
@@ -34274,7 +34274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 1142863744}
   rigid: {fileID: 483473154142354180}
 --- !u!64 &483473154142354182
 MeshCollider:
@@ -34612,7 +34612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 420303582}
   rigid: {fileID: 321036263145169502}
 --- !u!64 &1942649106674129909
 MeshCollider:
@@ -35000,7 +35000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 515743263}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &4035437501352047067
 MeshCollider:
@@ -35195,7 +35195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 1368101820}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &4761296740038065749
 MeshCollider:
@@ -35668,7 +35668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cea1ab77c7e714ea1f54bad760263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalOverride: {fileID: 0}
+  goalOverride: {fileID: 1174061643}
   rigid: {fileID: 4761296740038065747}
 --- !u!64 &7475611132305289402
 MeshCollider:

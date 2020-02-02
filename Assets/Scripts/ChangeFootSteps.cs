@@ -5,7 +5,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class ChangeFootSteps : MonoBehaviour
 {
-    AudioClip[] m_FootstepSounds;
+    public AudioClip[] m_FootstepSounds;
     AudioClip[] oldFootsteps;
     private void OnTriggerEnter(Collider other)
     {

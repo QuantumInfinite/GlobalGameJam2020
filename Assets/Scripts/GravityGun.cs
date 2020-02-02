@@ -23,6 +23,7 @@ public class GravityGun : MonoBehaviour
         carryCapacity = pickups.Length;
 
         cam = GetComponentInChildren<Camera>().transform;
+        ps_meshOutline.transform.localScale = smallScale;
     }
 
     public Grabbable currentGrabbed;
@@ -98,6 +99,7 @@ public class GravityGun : MonoBehaviour
         if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(2))
         {
             showBeam = false;
+            ps_meshOutline.gameObject.SetActive(false);
             currentGrabbed.UnsetCurrentObject(false, 0.1f);
             currentGrabbed.rb.AddForce(cam.forward * throwSpeed);
         }
@@ -109,6 +111,7 @@ public class GravityGun : MonoBehaviour
     public void SetMesh(Grabbable grab)
     {
         ps_meshOutline.gameObject.SetActive(true);
+        ps_meshOutline.transform.rotation = grab.transform.rotation;
         var shape = ps_meshOutline.shape;
         shape.enabled = true;
         shape.shapeType = ParticleSystemShapeType.Mesh;
