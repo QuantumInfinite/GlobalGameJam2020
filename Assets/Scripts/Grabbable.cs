@@ -89,7 +89,7 @@ public class Grabbable : MonoBehaviour
         GravityGun.instance.currentGrabbed = this;
         GravityGun.instance.showBeam = false;
         transform.parent = GravityGun.instance.gravitySpot;
-
+        transform.position = GravityGun.instance.gravitySpot.position;
         GravityGun.instance.SetMesh(this);
         GravityGun.instance.isBusy = false;
     }
