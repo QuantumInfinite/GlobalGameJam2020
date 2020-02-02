@@ -8,10 +8,13 @@ public class Grabbable : MonoBehaviour
     public Sprite icon;
     public Rigidbody rb;
     private Vector3 defaultScale;
+    public Vector3 startLocation;
 
     private void Awake()
     {
         defaultScale = transform.localScale;
+        startLocation = transform.position;
+
         rb = GetComponent<Rigidbody>();
     }
     private void OnMouseDown()

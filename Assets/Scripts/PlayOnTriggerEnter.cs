@@ -10,8 +10,10 @@ public class PlayOnTriggerEnter : MonoBehaviour
     public string animTrigger;
     public GameObject myGameObject;
     public bool turnOffObject;
+    public bool MoveToStartLocation;
     private void OnTriggerEnter(Collider other)
     {
+        var grab = other.GetComponent<Grabbable>();
         if (other.tag == "Player")
         {
             if(myGameObject)
@@ -31,7 +33,10 @@ public class PlayOnTriggerEnter : MonoBehaviour
                 anim.SetTrigger(animTrigger);
             }
         }
-        
+        else if(grab && MoveToStartLocation)
+        {
+            GameManager.instance.OnExitPlayZone(grab);
+        }
     }
 
     public void OnTriggerExit(Collider other)
