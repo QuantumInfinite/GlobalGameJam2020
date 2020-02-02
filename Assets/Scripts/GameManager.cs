@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     private int needToComplete;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void OnExitPlayZone(Grabbable grab)
     {
         grab.transform.position = grab.startLocation;

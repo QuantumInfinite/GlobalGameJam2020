@@ -26,8 +26,13 @@ public class InteractionZone : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         connectedFracture.OnTriggerStay(other);
-        if (cursor && newCursor)
-            cursor.sprite = newCursor;
+        if(other.tag == "Player"){
+            if (cursor && newCursor)
+            {
+                cursor.sprite = newCursor;
+            }
+        }
+        
     }
     private void OnTriggerExit(Collider other)
     {
