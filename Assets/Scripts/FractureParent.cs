@@ -68,7 +68,6 @@ public class FractureParent : MonoBehaviour
         {
             if (currentState == State.Returning)
             {
-                //Interupt();
                 Fail();
             }
         }
