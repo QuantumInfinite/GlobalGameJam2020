@@ -12,7 +12,7 @@ public class Grabbable : MonoBehaviour
 
     private void Awake()
     {
-        defaultScale = transform.localScale;
+        defaultScale = transform.lossyScale;
         startLocation = transform.position;
 
         rb = GetComponent<Rigidbody>();
