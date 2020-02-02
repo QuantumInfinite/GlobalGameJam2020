@@ -17,10 +17,13 @@ public class GravityGun : MonoBehaviour
     public AudioClip spawnInSFX;
     public AudioSource audioSource;
 
+    public Vector3 playerStart;
+
     private void Awake()
     {
         instance = this;
         carryCapacity = pickups.Length;
+        playerStart = transform.position;
 
         cam = GetComponentInChildren<Camera>().transform;
         ps_meshOutline.transform.localScale = smallScale;

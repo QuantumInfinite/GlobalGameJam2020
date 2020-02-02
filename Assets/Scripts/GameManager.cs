@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnGameComplete;
     public UnityEvent OnExitZone;
+    public UnityEvent OnPlayerLeave;
 
     public ParticleSystem ps_removePiece;
     public ParticleSystem ps_showPiece;
@@ -32,6 +33,14 @@ public class GameManager : MonoBehaviour
         ps_showPiece.Play();
         OnExitZone.Invoke();
 
+    }
+
+    public void PlayerExitsZone()
+    {
+        GravityGun.instance.GetComponent<CharacterController>().enabled = false;
+        GravityGun.instance.transform.position = GravityGun.instance.playerStart;
+        GravityGun.instance.GetComponent<CharacterController>().enabled = true;
+        OnPlayerLeave.Invoke();
     }
 
     public void Start()
