@@ -40,10 +40,6 @@ public class ReturnToHome : MonoBehaviour
         //LineRenderer stuff
         lineRenderer.SetPosition(0, goalPos);
         lineRenderer.enabled = false;
-
-
-
-
     }
     private void Update()
     {
@@ -80,7 +76,7 @@ public class ReturnToHome : MonoBehaviour
         lineRenderer.enabled = true;
         float currentTime = 0;
         Quaternion startRot = transform.rotation;
-        bool stillCorrecting = true;
+
         while (Time.realtimeSinceStartup < ascendTime)
         {
             float translation = (goalPos.y - transform.position.y) * ascendSpeed * Time.deltaTime;
@@ -93,6 +89,7 @@ public class ReturnToHome : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        bool stillCorrecting = true;
 
         while (stillCorrecting && Time.realtimeSinceStartup < endTime)
         {     
