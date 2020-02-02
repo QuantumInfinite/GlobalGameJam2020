@@ -36,14 +36,25 @@ public class ReturnToHome : MonoBehaviour
             goalPos = goalOverride.position;
             goalRot = goalOverride.rotation;
         }
+
+        //LineRenderer stuff
         lineRenderer.SetPosition(0, goalPos);
         lineRenderer.enabled = false;
+
+
+
+
     }
     private void Update()
     {
         if (lineRenderer.enabled)
         {
             lineRenderer.SetPosition(1, transform.position);
+        }
+
+        if (transform.position.y < -10)
+        {
+            Debug.Log(gameObject.name + " fell out of map");
         }
     }
     private void OnCollisionEnter(Collision collision)
