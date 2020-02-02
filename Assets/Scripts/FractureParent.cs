@@ -26,6 +26,8 @@ public class FractureParent : MonoBehaviour
     List<ReturnToHome> nearbyPieces;
     bool ableToRewind = false;
 
+    public Sprite icon;
+
     public enum State
     {
         Seperate, 
@@ -36,6 +38,10 @@ public class FractureParent : MonoBehaviour
     void Start()
     {
         completePiece.SetActive(false);
+        foreach(var piece in allPieces)
+        {
+            piece.GetComponent<Grabbable>().icon = icon;
+        }
     }
 
     void Update()
