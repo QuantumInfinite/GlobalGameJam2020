@@ -26,4 +26,9 @@ public class Climbable : MonoBehaviour
             player.isClimbing = false;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }
