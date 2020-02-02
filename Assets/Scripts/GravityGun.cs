@@ -52,6 +52,7 @@ public class GravityGun : MonoBehaviour
     public GameObject beam;
     public ParticleSystem ps_spawnObject;
     public ParticleSystem ps_storeObject;
+    public ParticleSystem ps_meshOutline;
 
     public float throwSpeed = 1000f;
     private void Update()
@@ -59,11 +60,13 @@ public class GravityGun : MonoBehaviour
         //drop item
         if(!isBusy && currentGrabbed && Input.GetMouseButtonDown(0))
         {
+            ps_meshOutline.gameObject.SetActive(false);
             currentGrabbed.UnsetCurrentObject(false, scaleTime);
         }
         //store item
         if (!isBusy && currentGrabbed && Input.GetMouseButtonDown(1))
         {
+            ps_meshOutline.gameObject.SetActive(false);
             storedGrapped.Add(currentGrabbed);
             ps_storeObject.Play();
             audioSource.clip = slurpSFX;
@@ -72,9 +75,10 @@ public class GravityGun : MonoBehaviour
             currentGrabbed = null;
         }
 
-        //drops a single object
+        //drop sorted object
         if (!isBusy && !currentGrabbed && Input.GetMouseButtonDown(1) && storedGrapped.Count > 0)
         {
+            ps_meshOutline.gameObject.SetActive(false);
             storedGrapped[0].gameObject.SetActive(true);
             storedGrapped[0].UnsetCurrentObject(true, scaleTime);
             storedGrapped.Remove(storedGrapped[0]);
@@ -99,6 +103,18 @@ public class GravityGun : MonoBehaviour
         }
 
         beam.SetActive(showBeam);
+
+        }
+
+    public void SetMesh(Grabbable grab)
+    {
+        ps_meshOutline.gameObject.SetActive(true);
+        var shape = ps_meshOutline.shape;
+        shape.enabled = true;
+        shape.shapeType = ParticleSystemShapeType.Mesh;
+        shape.meshShapeType = ParticleSystemMeshShapeType.Edge;
+        shape.meshSpawnMode = ParticleSystemShapeMultiModeValue.Loop;
+        shape.mesh = grab.GetComponent<MeshFilter>().mesh;
     }
 
 }
