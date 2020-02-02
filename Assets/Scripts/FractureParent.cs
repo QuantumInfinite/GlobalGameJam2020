@@ -26,13 +26,13 @@ public class FractureParent : MonoBehaviour
     List<ReturnToHome> nearbyPieces;
     bool ableToRewind = false;
 
-    enum State
+    public enum State
     {
         Seperate, 
         Returning, 
         Assembled
     }
-    State currentState;
+    public State currentState;
     void Start()
     {
         completePiece.SetActive(false);
@@ -89,13 +89,15 @@ public class FractureParent : MonoBehaviour
 
             nearbyPieces = new List<ReturnToHome>();
 
+            float endTime = Time.realtimeSinceStartup + maxReturnDuration;
+            float ascendTime = Time.realtimeSinceStartup + ascendDuration;
+
             foreach (var piece in allPieces)
             {
                 if (piece.gameObject.activeInHierarchy && Vector3.Distance(transform.position, piece.transform.position) < grabDistance)
                 {
                     nearbyPieces.Add(piece);
-                    float endTime = Time.realtimeSinceStartup + maxReturnDuration;
-                    float ascendTime = Time.realtimeSinceStartup + ascendDuration;
+                    
                     piece.StartCoroutine(piece.GoHome(returnSpeed, endTime, ascendSpeed, ascendTime));
                 }
             }

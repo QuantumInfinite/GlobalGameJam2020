@@ -74,7 +74,7 @@ public class ReturnToHome : MonoBehaviour
 
         lineRenderer.SetPosition(1, transform.position);
         lineRenderer.enabled = true;
-        float currentTime = 0;
+        float timeSinceStart = 0;
         Quaternion startRot = transform.rotation;
 
         while (Time.realtimeSinceStartup < ascendTime)
@@ -82,8 +82,8 @@ public class ReturnToHome : MonoBehaviour
             float translation = (goalPos.y - transform.position.y) * ascendSpeed * Time.deltaTime;
             rigid.MovePosition(transform.position + new Vector3(0, translation, 0));
 
-            currentTime += Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(startRot, goalRot, currentTime / (ascendTime - Time.realtimeSinceStartup));
+            timeSinceStart += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(startRot, goalRot, timeSinceStart / (ascendTime - Time.realtimeSinceStartup));
             
             //lineRenderer.SetPosition(1, transform.position);
             yield return new WaitForEndOfFrame();
