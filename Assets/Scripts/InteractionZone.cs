@@ -22,12 +22,12 @@ public class InteractionZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         connectedFracture.OnTriggerEnter(other);
-        if (cursor && newCursor)
-            cursor.sprite = newCursor;
     }
     private void OnTriggerStay(Collider other)
     {
         connectedFracture.OnTriggerStay(other);
+        if (cursor && newCursor)
+            cursor.sprite = newCursor;
     }
     private void OnTriggerExit(Collider other)
     {
