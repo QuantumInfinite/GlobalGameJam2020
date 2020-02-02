@@ -51,7 +51,6 @@ public class Grabbable : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.None;
-        //GravityGun.instance.ps_spawnObject.transform.position = transform.position;
         if (fromDrop)
         {
             GravityGun.instance.audioSource.clip = GravityGun.instance.spawnInSFX;
